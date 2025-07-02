@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SapiClub - Recargas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-card">
+                <div class="logo-content">
+                    <div class="logo-circle">
+                        <span>SC</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>SapiClub</h1>
+                        <p>Sistema de Recargas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-card">
+            <div class="progress-container">
+                <div class="step active" id="step1">
+                    <div class="step-circle">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <span>Seleccionar</span>
+                </div>
+                <div class="progress-line" id="line1"></div>
+                <div class="step" id="step2">
+                    <div class="step-circle">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>Completar</span>
+                </div>
+                <div class="progress-line" id="line2"></div>
+                <div class="step" id="step3">
+                    <div class="step-circle">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <span>Confirmar</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Select Package -->
+        <div class="step-content active" id="content1">
+            <div class="step-header">
+                <h2>¡Selecciona el monto!</h2>
+                <p>Selecciona el paquete que desea recargar perfecto para ti</p>
+            </div>
+            <div class="packages-grid">
+                <!-- Package 1 -->
+                <div class="package-card" onclick="selectPackage('1', '100 Diamantes + 10 Bono', 'Bs 139')">
+                    <div class="package-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="package-title">100 Diamantes + 10 Bono</div>
+                    <div class="package-price">Bs 139</div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="package-card" onclick="selectPackage('2', '310 Diamantes + 31 Bono', 'Bs 380')">
+                    <div class="package-popular">Popular</div>
+                    <div class="package-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="package-title">310 Diamantes + 31 Bono</div>
+                    <div class="package-price">Bs 380</div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="package-card" onclick="selectPackage('3', '520 Diamantes + 52 Bono', 'Bs 620')">
+                    <div class="package-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="package-title">520 Diamantes + 52 Bono</div>
+                    <div class="package-price">Bs 620</div>
+                </div>
+
+                <!-- Package 7 -->
+                <div class="package-card" onclick="selectPackage('7', 'Tarjeta Básica', 'Bs 100')">
+                    <div class="package-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="package-title">Tarjeta Básica</div>
+                    <div class="package-price">Bs 100</div>
+                </div>
+
+                <!-- Package 8 -->
+                <div class="package-card" onclick="selectPackage('8', 'Tarjeta Semanal', 'Bs 305')">
+                    <div class="package-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="package-title">Tarjeta Semanal</div>
+                    <div class="package-price">Bs 305</div>
+                </div>
+
+                <!-- Package 9 -->
+                <div class="package-card" onclick="selectPackage('9', 'Tarjeta Mensual', 'Bs 1250')">
+                    <div class="package-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="package-title">Tarjeta Mensual</div>
+                    <div class="package-price">Bs 1250</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Complete Data -->
+        <div class="step-content" id="content2">
+            <div class="step-header">
+                <h2>Completar</h2>
+                <p>Necesitamos esta información para procesar tu recarga</p>
+            </div>
+            <div class="form-card">
+                <form id="userDataForm" onsubmit="handleUserForm(event)">
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone text-blue"></i>
+                            Teléfono de contacto
+                        </label>
+                        <input type="tel" id="phone" placeholder="0XXX-XXXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="playerId">
+                            <i class="fas fa-user text-blue"></i>
+                            ID del Jugador
+                        </label>
+                        <input type="text" id="playerId" placeholder="Ingrese el ID del jugador" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="previousStep()">
+                            <i class="fas fa-arrow-left"></i>
+                            Anterior
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Continuar
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Step 3: Confirm Payment -->
+        <div class="step-content" id="content3">
+            <div class="step-header">
+                <h2>¡Último paso!</h2>
+                <p>Realiza el pago y confirma tu pedido</p>
+            </div>
+            <div class="payment-grid">
+                <!-- Payment Info Card -->
+                <div class="payment-card">
+                    <div class="card-header blue">
+                        <h3>
+                            <i class="fas fa-credit-card"></i>
+                            Información de Pago
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="payment-info">
+                            <div class="info-row">
+                                <span>Cédula:</span>
+                                <div class="info-value">
+                                    <span>33129271</span>
+                                    <button type="button" class="copy-btn" onclick="copyText('33129271')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>Telefono:</span>
+                                <div class="info-value">
+                                    <span>0412-3770260</span>
+                                    <button type="button" class="copy-btn" onclick="copyText('0412-3770260')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <span>Banco:</span>
+                                <div class="info-value">
+                                    <span>(0102) Venezuela</span>
+                                    <button type="button" class="copy-btn" onclick="copyText('0102 BANCO DE VENEZUELA')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="info-row highlight">
+                                <span>Monto:</span>
+                                <div class="info-value">
+                                    <span id="amountValue">Bs 108</span>
+                                    <button type="button" class="copy-btn" onclick="copyAmount()">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary full-width" onclick="copyAllInfo()">
+                            <i class="fas fa-copy"></i>
+                            Copiar Todo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirmation Card -->
+                <div class="confirmation-card">
+                    <div class="card-header green">
+                        <h3>
+                            <i class="fas fa-check"></i>
+                            Confirmar Pedido
+                        </h3>
+                        <p id="selectedPackageTitle">100 Diamantes + 10 Bono</p>
+                    </div>
+                    <div class="card-content">
+                        <form id="confirmationForm" onsubmit="submitOrder(event)">
+                            <div class="form-group">
+                                <label for="bank">
+                                    <i class="fas fa-building text-blue"></i>
+                                    Banco Origen
+                                </label>
+                                <input type="text" id="bank" placeholder="Ej: Banco de Venezuela, Mercantil, Banesco..." required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="holderCedula">
+                                        <i class="fas fa-hashtag text-purple"></i>
+                                        Cédula
+                                    </label>
+                                    <input type="text" id="holderCedula" placeholder="12345678" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="holderPhone">
+                                        <i class="fas fa-phone text-blue"></i>
+                                        Teléfono
+                                    </label>
+                                    <input type="tel" id="holderPhone" placeholder="0XXXXXXXXXX" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentDate">
+                                    <i class="fas fa-calendar text-red"></i>
+                                    Fecha de Pago
+                                </label>
+                                <input type="date" id="paymentDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference">
+                                    <i class="fas fa-hashtag text-blue"></i>
+                                    Referencia
+                                </label>
+                                <input type="text" id="reference" placeholder="Número de referencia" required>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="acceptTerms" required>
+                                <label for="acceptTerms">
+                                    Acepto los <a href="#" onclick="showTerms()">términos y condiciones</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-success full-width" id="submitBtn">
+                                Verificar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="back-button">
+                <button type="button" class="btn btn-outline" onclick="previousStep()">
+                    <i class="fas fa-arrow-left"></i>
+                    Anterior
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Términos y Condiciones</h3>
+                <button type="button" class="close-btn" onclick="closeTerms()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Términos y Condiciones - Sapi Club</h1>
+                
+                <section>
+                    <h2>1. Aceptación de Términos</h2>
+                    <p>Al utilizar nuestro servicio de recargas, usted acepta estar sujeto a estos términos y condiciones.</p>
+                </section>
+
+                <section>
+                    <h2>2. Proceso de Recarga</h2>
+                    <ul>
+                        <li>Las recargas se procesan en un plazo de 1 a 24 horas hábiles</li>
+                        <li>Debe proporcionar información correcta y verificable</li>
+                        <li>El pago debe realizarse exactamente por el monto indicado</li>
+                        <li>Conserve el comprobante de pago hasta completar la transacción</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>3. Política de Reembolsos</h2>
+                    <ul>
+                        <li>Los reembolsos solo se procesan en caso de error del sistema</li>
+                        <li>No se aceptan reembolsos por cambio de opinión del cliente</li>
+                        <li>Para solicitar reembolso, contacte dentro de las 48 horas</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Responsabilidades</h2>
+                    <ul>
+                        <li>Sapi Club no se hace responsable por información incorrecta proporcionada</li>
+                        <li>El cliente es responsable de verificar su ID de jugador</li>
+                        <li>Los pagos son procesados por terceros seguros</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>5. Contacto</h2>
+                    <p>Para soporte técnico o consultas, contáctenos a través de nuestros canales oficiales.</p>
+                </section>
+
+                <div class="terms-footer">
+                    <p><strong>Última actualización:</strong> Enero 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content success">
+            <div class="success-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>¡Pedido Recibido!</h2>
+                <div class="success-info">
+                    <p>Su pedido será procesado en los próximos minutos.</p>
+                    <div class="phone-info">
+                        <i class="fas fa-phone"></i>
+                        <span>Le daremos respuesta al: <span id="responsePhone"></span></span>
+                    </div>
+                </div>
+                <div class="success-details">
+                    <p><strong>Tiempo estimado:</strong> 5-300 minutos</p>
+                    <p><strong>Estado:</strong> En procesamiento</p>
+                </div>
+                <button type="button" class="btn btn-primary full-width" onclick="closeSuccess()">
+                    Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Procesando...</p>
+        </div>
+    </div>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
