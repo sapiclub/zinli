@@ -9,8 +9,8 @@ const EMAILJS_CONFIG = {
 let currentStep = 1
 let selectedPackage = {
   id: "1",
-  title: "100 Diamantes + 10 Bono",
-  price: "Bs 108",
+  title: "3$ Zinli",
+  price: "Bs 480",
 }
 
 const formData = {
@@ -161,8 +161,8 @@ function copyAmount() {
 }
 
 function copyAllInfo() {
-  const info = `RIF: J-502785477
-Celular: 0412-6425335
+  const info = `Cedula: 33129271
+Celular: 0412-3770260
 Banco: 0102 BANCO DE VENEZUELA
 Monto: ${selectedPackage.price}`
 
